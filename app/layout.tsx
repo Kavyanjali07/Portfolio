@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import SmoothScroll from "./components/SmoothScroll";
+import { ThemeProvider } from "./components/theme-provider";
+import { ThemeToggle } from "./components/ThemeToggle";
+import SoftAurora from "./components/SoftAurora";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,11 +26,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-white bg-black min-h-screen transition-colors duration-300`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="fixed inset-0 -z-10 w-screen h-screen">
+            <SoftAurora
+              speed={0.6}
+              scale={1.5}
+              brightness={1}
+              color1="#f7f7f7"
+              color2="#e100ff"
+              noiseFrequency={2.5}
+              noiseAmplitude={1}
+              bandHeight={0.5}
+              bandSpread={1}
+              octaveDecay={0.1}
+              layerOffset={0}
+              colorSpeed={1}
+              enableMouseInteraction
+              mouseInfluence={0.25}
+            />
+          </div>
+          <SmoothScroll />
+          <ThemeToggle />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
