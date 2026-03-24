@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kavyanjali Vashishtha
+**Cybersecurity & System Architecture Portfolio**
 
-## Getting Started
+This repository contains the source code for my professional portfolio, built with Next.js, Framer Motion, and Tailwind CSS.
 
-First, run the development server:
+---
 
+## 🛠️ Tech Stack
+*   **Core:** Next.js 15, React 19, TypeScript
+*   **Styling & UI:** Tailwind CSS, Framer Motion, GSAP, Radix UI, Lucide React
+*   **Interactions:** OGL (WebGL effects), Smooth Scroll (Lenis)
+*   **Backend & Security:** Spring Boot, Python, nftables, JWT, RBAC
+
+---
+
+## 🚀 Key Projects
+*   **[Dynamic Firewall Rule Generator](https://github.com/Kavyanjali07/Dynamic-Firewall-Rule-Generator)**: Automated network defense tool using Python and nftables.
+*   **[Secure System Call Interface](https://github.com/Kavyanjali07/User-Friendly-System-Call-Interface-for-Enhanced-Security)**: Security layer for Linux intercepting system calls with RBAC.
+*   **[Smart Expense AI](https://github.com/Kavyanjali07/SmartExpenseAI)**: Secure financial backend with 2FA and AI categorization.
+
+---
+
+## 📂 Project Structure
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+/app            # Pages and layout
+/components     # Custom UI components
+/public         # Static assets
+/lib            # Utility functions
+Makefile        # Automation scripts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Development
+Setup requirements: Node.js 18+ and npm.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Install dependencies
+npm install
 
-## Learn More
+# Run development server
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# Build for production
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤖 Automation
+A `Makefile` is provided for common development tasks:
+*   `make setup`: Install dependencies.
+*   `make dev`: Start the dev server.
+*   `make build`: Build the application.
+*   `make lint`: Run ESLint.
+*   `make clean`: Remove build artifacts and node modules.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ✉️ Contact
+*   [LinkedIn](https://www.linkedin.com/in/kavyanjali07)
+*   [GitHub](https://github.com/Kavyanjali07)
+*   kavyanjalivashishtha@gmail.com
