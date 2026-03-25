@@ -91,32 +91,47 @@ export default function Hero() {
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
                 >
-                    {/* Horizontal Quick Access */}
-                    <div className="w-full flex flex-col items-center gap-4">
-                        <span className="text-[10px] font-black text-cyan-400/40 uppercase tracking-[0.4em]">Quick Access Journey</span>
-                        <div className="flex items-center gap-2 p-3 rounded-2xl bg-white/5 border border-white/10 md:backdrop-blur-xl shadow-2xl">
-                            {[
-                                { label: "About Me", icon: "👤", id: "about-me" },
-                                { label: "Skills", icon: "⚡", id: "skills" },
-                                { label: "Projects", icon: "🚀", id: "projects" },
-                                { label: "Trainings", icon: "📚", id: "trainings" },
-                                { label: "Certificates", icon: "🏆", id: "certificates" },
-                                { label: "Achievements", icon: "🌟", id: "achievements" },
-                                { label: "Education", icon: "🎓", id: "education" },
-                                { label: "Contact", icon: "✉️", id: "contact" },
-                            ].map((s, i) => (
-                                <button
-                                    key={s.label}
-                                    title={s.label}
-                                    className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center bg-white/5 hover:bg-cyan-500/20 border border-transparent hover:border-cyan-500/30 transition-all duration-300 group shadow-lg"
-                                    onClick={() => {
-                                        const el = document.getElementById(s.id);
-                                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                    }}
-                                >
-                                    <span className="text-xl group-hover:scale-110 transition-transform">{s.icon}</span>
-                                </button>
-                            ))}
+                    {/* Horizontal Quick Access - Cyber Edition */}
+                    <div className="w-full flex flex-col items-center gap-6">
+                        <div className="flex items-center gap-3">
+                            <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.8)]" />
+                            <span className="text-[10px] md:text-[11px] font-mono font-black text-cyan-400/60 uppercase tracking-[0.5em]">Active Journey Matrix v1.0</span>
+                        </div>
+                        
+                        <div className="relative group px-4">
+                            {/* Cyber Accents */}
+                            <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-cyan-500/30 rounded-tl-lg group-hover:border-cyan-500 group-hover:scale-110 transition-all duration-500" />
+                            <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-purple-500/30 rounded-br-lg group-hover:border-purple-500 group-hover:scale-110 transition-all duration-500" />
+                            
+                            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 p-4 rounded-2xl bg-white/5 dark:bg-slate-900/40 border border-white/10 md:backdrop-blur-xl shadow-2xl group-hover:border-cyan-500/20 transition-all duration-500">
+                                {[
+                                    { label: "About Me", icon: "👤", id: "about-me" },
+                                    { label: "Skills", icon: "⚡", id: "skills" },
+                                    { label: "Projects", icon: "🚀", id: "projects" },
+                                    { label: "Trainings", icon: "📚", id: "trainings" },
+                                    { label: "Certificates", icon: "🏆", id: "certificates" },
+                                    { label: "Achievements", icon: "🌟", id: "achievements" },
+                                    { label: "Education", icon: "🎓", id: "education" },
+                                    { label: "Contact", icon: "✉️", id: "contact" },
+                                ].map((s, i) => (
+                                    <button
+                                        key={s.label}
+                                        title={s.label}
+                                        className="relative w-11 h-11 md:w-14 md:h-14 rounded-xl flex items-center justify-center bg-white/5 hover:bg-cyan-500/10 border border-transparent hover:border-cyan-500/30 transition-all duration-300 group/btn shadow-lg"
+                                        onClick={() => {
+                                            const el = document.getElementById(s.id);
+                                            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }}
+                                    >
+                                        {/* Target Lock Effect */}
+                                        <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity">
+                                            <div className="absolute top-1 left-1 w-2 h-2 border-t border-l border-cyan-400" />
+                                            <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-cyan-400" />
+                                        </div>
+                                        <span className="text-xl md:text-2xl group-hover/btn:scale-110 group-hover/btn:rotate-6 transition-transform">{s.icon}</span>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
