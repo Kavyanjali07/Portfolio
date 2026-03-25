@@ -30,28 +30,28 @@ function SectionHeader({ title, icon, color }: { title: string, icon: string, co
 
 const allVariants: any = {
     tiltFlip: {
-        offscreen: { opacity: 0, x: -100, y: -50, rotateX: 45, rotateY: -20, scale: 0.9, filter: "blur(10px)" },
-        onscreen: { opacity: 1, x: 0, y: 0, rotateX: 0, rotateY: 0, scale: 1, filter: "blur(0px)", transition: { type: "spring", damping: 15, stiffness: 60, duration: 1.5 } }
+        offscreen: { opacity: 0, x: -30, rotateX: 15, scale: 0.95 },
+        onscreen: { opacity: 1, x: 0, rotateX: 0, scale: 1, transition: { type: "spring", damping: 15, stiffness: 60, duration: 1 } }
     },
     haloExpand: {
-        offscreen: { opacity: 0, scale: 0.5, filter: "blur(40px)" },
-        onscreen: { opacity: 1, scale: 1, filter: "blur(0px)", transition: { type: "spring", damping: 25, stiffness: 40, duration: 2 } }
+        offscreen: { opacity: 0, scale: 0.8 },
+        onscreen: { opacity: 1, scale: 1, transition: { type: "spring", damping: 25, stiffness: 40, duration: 1.5 } }
     },
     stackSlide: {
-        offscreen: { opacity: 0, x: 300, skewX: -10, scale: 0.95 },
-        onscreen: { opacity: 1, x: 0, skewX: 0, scale: 1, transition: { type: "spring", damping: 20, stiffness: 50, duration: 1.2 } }
+        offscreen: { opacity: 0, x: 100, scale: 0.95 },
+        onscreen: { opacity: 1, x: 0, scale: 1, transition: { type: "spring", damping: 20, stiffness: 50, duration: 1 } }
     },
     unrollCascade: {
-        offscreen: { opacity: 0, y: 150, scaleY: 0, originY: 0 },
-        onscreen: { opacity: 1, y: 0, scaleY: 1, transition: { type: "spring", damping: 18, stiffness: 45, duration: 1.8 } }
+        offscreen: { opacity: 0, y: 50, scaleY: 0.8, originY: 0 },
+        onscreen: { opacity: 1, y: 0, scaleY: 1, transition: { type: "spring", damping: 18, stiffness: 45, duration: 1.2 } }
     },
     spotlightZoom: {
-        offscreen: { opacity: 0, scale: 1.3, filter: "brightness(0.2) blur(10px)" },
-        onscreen: { opacity: 1, scale: 1, filter: "brightness(1) blur(0px)", transition: { duration: 1.5, ease: "easeOut" } }
+        offscreen: { opacity: 0, scale: 1.1 },
+        onscreen: { opacity: 1, scale: 1, transition: { duration: 1, ease: "easeOut" } }
     },
     scatterEffect: {
         offscreen: { opacity: 0 },
-        onscreen: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.2 } }
+        onscreen: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.1 } }
     },
     dualSide: {
         offscreen: { opacity: 0 },
@@ -62,11 +62,10 @@ const allVariants: any = {
 const scatterChildVariants: any = {
     offscreen: (i: number) => ({
         opacity: 0,
-        x: parseFloat((Math.sin(i * 1.5) * 300).toFixed(2)),
-        y: parseFloat((Math.cos(i * 1.5) * 300).toFixed(2)),
-        rotate: i * 45,
-        scale: 0.5,
-        filter: "blur(10px)"
+        x: parseFloat((Math.sin(i * 1.5) * 100).toFixed(2)),
+        y: parseFloat((Math.cos(i * 1.5) * 100).toFixed(2)),
+        rotate: i * 20,
+        scale: 0.8,
     }),
     onscreen: {
         opacity: 1,
@@ -74,8 +73,7 @@ const scatterChildVariants: any = {
         y: 0,
         rotate: 0,
         scale: 1,
-        filter: "blur(0px)",
-        transition: { type: "spring" as const, damping: 12, stiffness: 80 }
+        transition: { type: "spring", damping: 15, stiffness: 100 }
     }
 };
 
@@ -99,20 +97,20 @@ function SectionWrapper({ children, id, title, icon, color = "cyan", variantType
             {variantType === 'dualSide' ? (
                 <div className="relative mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
                     <motion.div 
-                        initial={{ opacity: 0, x: -100 }}
+                        initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, type: "spring", damping: 15 }}
-                        className="relative p-1 rounded-[3rem] bg-white/[0.08] dark:bg-slate-900/40 border border-white/20 backdrop-blur-2xl shadow-xl overflow-hidden"
+                        className="relative p-1 rounded-[3rem] bg-white/[0.08] dark:bg-slate-900/40 border border-white/20 md:backdrop-blur-2xl shadow-xl overflow-hidden"
                     >
                         <div className="p-8 md:p-10 relative z-10">
                             {Array.isArray(children) ? children[0] : children}
                         </div>
                     </motion.div>
                     <motion.div 
-                        initial={{ opacity: 0, x: 100 }}
+                        initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, type: "spring", damping: 15 }}
-                        className="relative p-1 rounded-[3rem] bg-white/[0.08] dark:bg-slate-900/40 border border-white/20 backdrop-blur-2xl shadow-xl overflow-hidden"
+                        className="relative p-1 rounded-[3rem] bg-white/[0.08] dark:bg-slate-900/40 border border-white/20 md:backdrop-blur-2xl shadow-xl overflow-hidden"
                     >
                         <div className="p-8 md:p-10 relative z-10">
                             {Array.isArray(children) ? children[1] : children}
@@ -120,7 +118,7 @@ function SectionWrapper({ children, id, title, icon, color = "cyan", variantType
                     </motion.div>
                 </div>
             ) : (
-                <div className="relative p-1 rounded-[4rem] bg-white/[0.08] dark:bg-slate-900/40 border border-white/20 backdrop-blur-2xl shadow-2xl overflow-hidden group hover:border-white/30 transition-all duration-500 mt-12">
+                <div className="relative p-1 rounded-[4rem] bg-white/[0.08] dark:bg-slate-900/40 border border-white/20 md:backdrop-blur-2xl shadow-2xl overflow-hidden group hover:border-white/30 transition-all duration-500 mt-12">
                     <div className="p-8 md:p-14 relative z-10">
                         {children}
                     </div>
@@ -137,31 +135,28 @@ function SectionWrapper({ children, id, title, icon, color = "cyan", variantType
 
 function AboutMeVisual() {
     return (
-        <div className="space-y-12">
-            <div className="relative p-1 z-10">
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
+            <div className="flex-[1.5] space-y-8 relative z-10">
                 <div className="absolute -right-20 -top-20 w-64 h-64 bg-purple-500/10 rounded-full blur-[100px] group-hover:bg-cyan-500/20 transition-colors" />
 
                 <div className="relative z-10 space-y-6">
                     <h4 className="text-cyan-400 font-black text-sm uppercase tracking-[0.4em] mb-2">Introduction</h4>
-                    <p className="text-2xl md:text-4xl font-black text-white leading-tight tracking-tighter">
+                    <p className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tighter">
                         Hi, I am <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">Kavyanjali Vashishtha.</span>
                     </p>
 
-                    <div className="space-y-6 text-gray-300 font-medium text-lg md:text-xl leading-relaxed">
+                    <div className="space-y-6 text-gray-300 font-medium text-base md:text-lg leading-relaxed">
                         <p>
-                            I am a Computer Science student with a deep-seated passion for architecting systems that are not just functional, but <span className="text-white font-bold italic">resilient by design</span>. My journey started with a simple question: "How does this break?" — which eventually led me into the fascinating world of cybersecurity and backend engineering.
+                            I am a Computer Science student with a deep-seated passion for architecting systems that are not just functional, but <span className="text-white font-bold italic">resilient by design</span>. My journey started with a simple question: "How does this break?" — which eventually led me into the world of cybersecurity.
                         </p>
                         <p>
-                            Currently pursuing my B.Tech at Lovely Professional University, I specialize in bridging the gap between high-level software development and low-level system security. Whether it's automating firewall rules or developing secure API gateways, I focus on building tools that provide both utility and peace of mind.
-                        </p>
-                        <p>
-                            When I'm not auditing code or experimenting with new network protocols, I'm likely participating in CTFs or exploring the latest advancements in AI-driven threat detection.
+                            Pursuing my B.Tech at Lovely Professional University, I specialize in bridging software development and low-level system security. Whether it's automating firewall rules or developing secure API gateways, I build tools that provide utility and peace of mind.
                         </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 pt-6">
-                        {["Secure Architect", "Developer", "Cybersecurity Enthusiast"].map(tag => (
-                            <span key={tag} className="px-6 py-2 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-black uppercase tracking-widest shadow-lg">
+                    <div className="flex flex-wrap gap-3 pt-4">
+                        {["Secure Architect", "Developer", "Cyber Enthusiast"].map(tag => (
+                            <span key={tag} className="px-4 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-black uppercase tracking-widest shadow-lg">
                                 {tag}
                             </span>
                         ))}
@@ -169,15 +164,15 @@ function AboutMeVisual() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="flex-1 grid grid-cols-1 gap-6 w-full">
                 {[
-                    { title: "Systems Thinking", icon: "🧠", desc: "I view software as a living organism. I analyze how components interact and identify potential failure points before they become vulnerabilities." },
-                    { title: "Defensive Coding", icon: "🛡️", desc: "Security is not an afterthought for me. I implement RBAC, encryption, and input validation as the foundation of every project." }
+                    { title: "Systems Thinking", icon: "🧠", desc: "Analyzing how components interact and identifying potential failure points." },
+                    { title: "Defensive Coding", icon: "🛡️", desc: "Implementing RBAC, encryption, and validation as core foundations." }
                 ].map((item, i) => (
-                    <div key={i} className="p-10 rounded-[3rem] bg-slate-900/40 border border-white/20 backdrop-blur-3xl hover:bg-white/10 transition-all hover:scale-[1.03] shadow-xl group">
-                        <div className="text-5xl mb-6 group-hover:rotate-12 transition-transform duration-500">{item.icon}</div>
-                        <h5 className="text-white font-black text-2xl mb-3 uppercase tracking-tighter">{item.title}</h5>
-                        <p className="text-gray-400 font-medium text-lg italic leading-relaxed">{item.desc}</p>
+                    <div key={i} className="p-8 rounded-[2.5rem] bg-slate-900/40 border border-white/20 md:backdrop-blur-2xl hover:bg-white/10 transition-all hover:scale-[1.02] shadow-xl group">
+                        <div className="text-4xl mb-4 group-hover:rotate-12 transition-transform duration-500">{item.icon}</div>
+                        <h5 className="text-white font-black text-xl mb-2 uppercase tracking-tighter">{item.title}</h5>
+                        <p className="text-gray-400 font-medium text-base italic leading-relaxed">{item.desc}</p>
                     </div>
                 ))}
             </div>
@@ -195,9 +190,9 @@ function TrainingsVisual() {
                     <span className="px-4 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-black text-[11px] uppercase tracking-[0.3em] border border-cyan-500/40">Immersive Training</span>
                     <h4 className="text-4xl font-black text-white tracking-tighter uppercase italic">Cybersecurity Summer Training</h4>
                     <p className="text-cyan-400 font-black tracking-widest uppercase text-sm">Lovely Professional University | Jun’ 25 – Jul’ 25</p>
-                    <div className="p-12 rounded-[3.5rem] bg-slate-900/40 border border-white/10 backdrop-blur-3xl mt-8 group hover:bg-white/10 transition-all duration-500 shadow-2xl relative overflow-hidden">
+                    <div className="p-10 rounded-[3.5rem] bg-slate-900/40 border border-white/10 md:backdrop-blur-2xl mt-8 group hover:bg-white/10 transition-all duration-500 shadow-2xl relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-6 opacity-10 text-6xl group-hover:scale-125 transition-transform">🛰️</div>
-                        <p className="text-gray-300 leading-relaxed font-medium md:text-xl relative z-10 italic">
+                        <p className="text-gray-300 leading-relaxed font-medium md:text-lg relative z-10 italic">
                             An intensive, hands-on program focusing on the complete lifecycle of cyber defense. I gained deep experience in network security auditing, real-time packet analysis, and ethical exploitation. Mastering tools like <span className="text-cyan-400">Metasploit</span>, <span className="text-cyan-400">Wireshark</span>, and <span className="text-cyan-400">Nmap</span>, I learned to identify and mitigate critical infrastructure vulnerabilities before they can be leveraged.
                         </p>
                     </div>
@@ -233,7 +228,7 @@ function CertificatesVisual() {
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.05 }}
                     >
-                        <div className="p-8 rounded-[2.5rem] bg-slate-900/40 border border-white/20 backdrop-blur-3xl hover:bg-white/10 hover:border-cyan-500/20 transition-all flex flex-col justify-between h-full shadow-lg">
+                        <div className="p-8 rounded-[2.5rem] bg-slate-900/40 border border-white/20 md:backdrop-blur-2xl hover:bg-white/10 hover:border-cyan-500/20 transition-all flex flex-col justify-between h-full shadow-lg">
                             <div className="space-y-3">
                                 <span className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.3em] font-mono">[{cert.issuer}]</span>
                                 <h5 className="text-white font-bold text-lg leading-snug group-hover:text-cyan-400 transition-colors uppercase tracking-tighter">{cert.title}</h5>
@@ -261,22 +256,22 @@ function EducationVisual() {
     return (
         <div className="space-y-12">
             {[
-                { title: "B.Tech in Computer Science", org: "Lovely Professional University", date: "2023 – Present", score: "CGPA: 7.40", color: "cyan", icon: "🎓" },
+                { title: "B.Tech in CS", org: "Lovely Professional University", date: "2023 – Present", score: "CGPA: 7.40", color: "cyan", icon: "🎓" },
                 { title: "Intermediate (PCM)", org: "Little Scholar’s Academy", date: "2021", score: "91%", color: "purple", icon: "🏫" },
                 { title: "Matriculation", org: "Little Scholar’s Academy", date: "2019", score: "94%", color: "emerald", icon: "✏️" }
             ].map((edu, i) => (
                 <div key={i} className="relative group">
                     <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
-                        <div className={`w-20 h-20 rounded-3xl bg-${edu.color}-500/10 border border-${edu.color}-500/20 flex items-center justify-center text-5xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-${edu.color}-500/20 transition-all duration-500 shadow-2xl`}>
+                        <div className={`w-16 h-16 rounded-2xl bg-${edu.color}-500/10 border border-${edu.color}-500/20 flex items-center justify-center text-4xl group-hover:scale-110 group-hover:rotate-6 group-hover:bg-${edu.color}-500/20 transition-all duration-500 shadow-2xl`}>
                             {edu.icon}
                         </div>
-                        <div className="space-y-2 flex-1 pt-2">
-                            <div className="flex flex-wrap items-center gap-4 mb-1">
-                                <h4 className="text-3xl font-black text-white tracking-tighter uppercase">{edu.title}</h4>
-                                <span className="px-4 py-1 rounded-full bg-white/5 text-gray-400 font-bold text-xs uppercase border border-white/10">{edu.date}</span>
+                        <div className="space-y-1 flex-1 pt-1">
+                            <div className="flex flex-wrap items-center gap-4">
+                                <h4 className="text-2xl font-black text-white tracking-tighter uppercase">{edu.title}</h4>
+                                <span className="px-3 py-0.5 rounded-full bg-white/5 text-gray-400 font-bold text-[10px] uppercase border border-white/10">{edu.date}</span>
                             </div>
-                            <p className={`text-${edu.color}-400 font-black uppercase tracking-[0.4em] text-xs mb-4 opacity-70`}>{edu.org}</p>
-                            <div className={`inline-flex px-8 py-2 rounded-2xl bg-${edu.color}-500/10 border border-${edu.color}-500/20 text-${edu.color}-400 font-black text-xl group-hover:shadow-[0_0_30px_rgba(var(--${edu.color}-500),0.2)] transition-shadow`}>
+                            <p className={`text-${edu.color}-400 font-black uppercase tracking-[0.4em] text-[10px] mb-2 opacity-70`}>{edu.org}</p>
+                            <div className={`inline-flex px-4 py-1.5 rounded-xl bg-${edu.color}-500/10 border border-${edu.color}-500/20 text-${edu.color}-400 font-black text-lg`}>
                                 {edu.score}
                             </div>
                         </div>
@@ -290,7 +285,7 @@ function EducationVisual() {
 function AchievementsStatic() {
     return (
         <div className="space-y-12">
-            <div className="relative group overflow-hidden p-14 rounded-[4rem] bg-slate-900/60 border border-white/20 backdrop-blur-3xl hover:border-cyan-400/30 transition-all duration-700 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+            <div className="relative group overflow-hidden p-10 rounded-[3.5rem] bg-slate-900/60 border border-white/20 md:backdrop-blur-2xl hover:border-cyan-400/30 transition-all duration-700 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                 <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
                 <div className="flex flex-col md:flex-row items-center gap-12 relative z-10">
                     <div className="w-40 h-40 rounded-[2.5rem] bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center text-7xl shadow-[0_20px_60px_rgba(168,85,247,0.4)] relative overflow-hidden group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-700">
@@ -315,7 +310,7 @@ function AchievementsStatic() {
                     { title: "Project Publication", icon: "📑", desc: "Successfully published innovative technical projects demonstrating backend security, system-level architecture, and intelligent rule generation.", color: "cyan" },
                     { title: "Innovation Scout", icon: "📡", desc: "Recognized for building a dynamic firewall rule generator that automates threat response and significantly enhances network defense layers.", color: "purple" }
                 ].map((item, i) => (
-                    <div key={i} className="p-12 rounded-[3.5rem] bg-slate-900/40 border border-white/20 backdrop-blur-3xl hover:bg-white/10 transition-all hover:[transform:translateY(-12px)] shadow-2xl relative overflow-hidden group">
+                    <div key={i} className="p-10 rounded-[3rem] bg-slate-900/40 border border-white/20 md:backdrop-blur-2xl hover:bg-white/10 transition-all hover:[transform:translateY(-12px)] shadow-2xl relative overflow-hidden group">
                         <div className={`absolute top-0 right-0 w-32 h-32 bg-${item.color}-500/5 rounded-full blur-3xl`} />
                         <div className={`w-16 h-16 rounded-2xl bg-${item.color}-500/10 border border-${item.color}-500/20 flex items-center justify-center text-4xl mb-8 group-hover:rotate-6 transition-transform shadow-inner`}>{item.icon}</div>
                         <h5 className="text-white font-black text-2xl mb-4 tracking-tight uppercase italic">{item.title}</h5>
@@ -373,11 +368,11 @@ function StandaloneSkills() {
                                 custom={j + (i * 10)}
                                 variants={scatterChildVariants}
                                 whileHover={{ 
-                                    scale: 1.1, 
+                                    scale: 1.05, 
                                     y: -10,
-                                    boxShadow: `0 0 30px rgba(var(--${cat.color === 'pink' ? 'pink-500' : cat.color + '-500-rgb'}, 34, 211, 238), 0.4)`
+                                    boxShadow: `0 0 20px rgba(var(--${cat.color === 'pink' ? 'pink-500' : cat.color + '-500-rgb'}, 34, 211, 238), 0.3)`
                                 }}
-                                className={`px-8 py-4 md:px-10 md:py-5 rounded-3xl bg-white/10 border border-white/10 text-white font-black text-lg md:text-2xl backdrop-blur-xl hover:bg-white/20 hover:border-${cat.color === 'pink' ? 'pink-500' : cat.color + '-500'}/40 transition-all cursor-default shadow-2xl relative group overflow-hidden`}
+                                className={`px-6 py-3 md:px-8 md:py-4 rounded-2xl bg-white/10 border border-white/10 text-white font-black text-base md:text-xl md:backdrop-blur-xl hover:bg-white/20 hover:border-${cat.color === 'pink' ? 'pink-500' : cat.color + '-500'}/40 transition-all cursor-default shadow-2xl relative group overflow-hidden`}
                             >
                                 <div className={`absolute inset-0 bg-gradient-to-br from-${cat.color === 'pink' ? 'pink-500' : cat.color + '-500'}/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
                                 <span className="relative z-10">{skill}</span>
@@ -421,7 +416,7 @@ function StandaloneProjects() {
                 <div key={i}>
                     <div className="relative group">
                         <div className={`absolute -inset-2 bg-gradient-to-br from-${p.color}-400 to-transparent rounded-[2.5rem] blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-700`} />
-                        <div className="relative p-12 rounded-[3.5rem] bg-slate-900/40 border border-white/20 backdrop-blur-3xl hover:bg-white/10 transition-all h-full flex flex-col shadow-2xl">
+                        <div className="relative p-10 rounded-[3rem] bg-slate-900/40 border border-white/20 md:backdrop-blur-2xl hover:bg-white/10 transition-all h-full flex flex-col shadow-2xl">
                             <div className="flex justify-between items-start mb-6">
                                 <h4 className="text-3xl font-black text-white tracking-tighter uppercase italic">{p.title}</h4>
                             </div>

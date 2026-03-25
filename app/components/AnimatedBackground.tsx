@@ -97,22 +97,22 @@ export default function AnimatedBackground() {
                     top: ["0%", "100%", "0%"]
                 }}
                 transition={{
-                    duration: 12,
+                    duration: 15,
                     repeat: Infinity,
                     ease: "linear"
                 }}
             />
 
-            {/* Glowing Orbs */}
-            {orbs.map((orb, index) => (
+            {/* Glowing Orbs - Reduced for mobile */}
+            {orbs.slice(0, 3).map((orb, index) => (
                 <motion.div
                     key={index}
-                    className={`absolute rounded-full ${orb.size} ${orb.color} ${orb.blur} opacity-30 dark:opacity-40`}
+                    className={`absolute rounded-full ${orb.size} ${orb.color} ${index === 0 ? 'block' : 'hidden sm:block'} sm:${orb.blur} opacity-20 dark:opacity-30`}
                     initial={{ left: orb.initialX, top: orb.initialY }}
                     animate={{
                         left: orb.x,
                         top: orb.y,
-                        scale: [1, 1.1, 1],
+                        scale: [1, 1.05, 1],
                     }}
                     transition={{
                         duration: orb.duration,
@@ -123,25 +123,24 @@ export default function AnimatedBackground() {
                 />
             ))}
 
-            {/* Tech Hexagon Orbits (CSS only for perf) */}
-            <div className="absolute inset-0 overflow-hidden">
+            {/* Tech Hexagon Orbits (CSS only for perf) - Desktop only */}
+            <div className="absolute inset-0 overflow-hidden hidden md:block">
                 <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] border border-cyan-500/10 rounded-full animate-[spin_60s_linear_infinite]" />
                 <div className="absolute top-[40%] right-[5%] w-[600px] h-[600px] border border-purple-500/5 rounded-full animate-[spin_80s_linear_infinite_reverse]" />
             </div>
 
-            {/* Subtle floating particles */}
-            {particles.map((p, i) => (
+            {/* Subtle floating particles - Greatly reduced for mobile */}
+            {particles.slice(0, 8).map((p, i) => (
                 <motion.div
                     key={`particle-${i}`}
-                    className="absolute w-1 h-1 rounded-full bg-cyan-400/40"
+                    className={`absolute w-1 h-1 rounded-full bg-cyan-400/30 ${i > 4 ? 'hidden sm:block' : ''}`}
                     initial={{
                         left: `${p.left}%`,
                         top: `${p.top}%`,
                     }}
                     animate={{
-                        y: [0, -40, 0],
-                        opacity: [0.1, 0.4, 0.1],
-                        scale: [1, 1.5, 1],
+                        y: [0, -30, 0],
+                        opacity: [0.1, 0.3, 0.1],
                     }}
                     transition={{
                         duration: p.duration,

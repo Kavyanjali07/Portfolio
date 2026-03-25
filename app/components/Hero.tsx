@@ -54,7 +54,7 @@ export default function Hero() {
                         {/* Highlights Background */}
                         <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-cyan-500/20 rounded-[2.5rem] blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
                         
-                        <div className="relative space-y-8 bg-white/5 dark:bg-[#0f172a]/40 border border-white/10 backdrop-blur-2xl p-10 rounded-[2.5rem] shadow-2xl transition-all duration-500 hover:border-cyan-500/30">
+                        <div className="relative space-y-8 bg-white/5 dark:bg-[#0f172a]/40 border border-white/10 md:backdrop-blur-2xl p-10 rounded-[2.5rem] shadow-2xl transition-all duration-500 hover:border-cyan-500/30">
                             <p className="text-gray-900 dark:text-white font-black text-2xl md:text-3xl leading-tight tracking-tight">
                                 <TextType
                                     text={["Building systems that are", "secure by design."]}
@@ -94,7 +94,7 @@ export default function Hero() {
                     {/* Horizontal Quick Access */}
                     <div className="w-full flex flex-col items-center gap-4">
                         <span className="text-[10px] font-black text-cyan-400/40 uppercase tracking-[0.4em]">Quick Access Journey</span>
-                        <div className="flex items-center gap-2 p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl">
+                        <div className="flex items-center gap-2 p-3 rounded-2xl bg-white/5 border border-white/10 md:backdrop-blur-xl shadow-2xl">
                             {[
                                 { label: "About Me", icon: "👤", id: "about-me" },
                                 { label: "Skills", icon: "⚡", id: "skills" },
@@ -144,7 +144,7 @@ export default function Hero() {
                             href="https://drive.google.com/file/d/1KssYKRinThNHeGsjkHeCntxsP0p3hCrP/view?usp=sharing"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="relative px-8 py-3.5 inline-flex items-center justify-center rounded-2xl bg-[#1e293b]/80 border border-purple-500/30 text-white font-bold text-sm tracking-wide shadow-xl hover:shadow-purple-500/20 hover:-translate-y-1 transition-all duration-300 backdrop-blur-md"
+                            className="relative px-8 py-3.5 inline-flex items-center justify-center rounded-2xl bg-[#1e293b]/80 border border-purple-500/30 text-white font-bold text-sm tracking-wide shadow-xl hover:shadow-purple-500/20 hover:-translate-y-1 transition-all duration-300 md:backdrop-blur-md"
                         >
                             My CV
                         </a>

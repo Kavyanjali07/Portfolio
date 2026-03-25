@@ -30,8 +30,8 @@
   padding: 2.5em;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(6, 0, 16, 0.6) !important;
-  backdrop-filter: blur(20px);
+  background: rgba(6, 0, 16, 0.85) !important;
+  /* backdrop-filter is expensive on mobile, disabling it by default and enabling on md+ */
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-decoration: none;
@@ -102,6 +102,13 @@
 @media (min-width: 640px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .magic-bento-card {
+    background: rgba(6, 0, 16, 0.6) !important;
+    backdrop-filter: blur(20px);
   }
 }
 
