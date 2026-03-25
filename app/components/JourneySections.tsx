@@ -603,6 +603,19 @@ export default function JourneySections() {
                           particleCount={18}
                           glowColor="132, 0, 255"
                         />
+
+                        {/* Scroll to Top Button */}
+                        <motion.button
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            className="mt-20 mx-auto px-10 py-4 rounded-2xl bg-white/5 border border-white/10 text-cyan-400 font-black uppercase tracking-[0.4em] text-xs hover:bg-cyan-500/10 hover:border-cyan-500 transition-all active:scale-90 shadow-2xl group flex items-center gap-4"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false }}
+                        >
+                            <span className="group-hover:-translate-y-1 transition-transform">↑</span>
+                            Back to Entrance
+                            <span className="group-hover:-translate-y-1 transition-transform">↑</span>
+                        </motion.button>
                     </div>
                 </SectionWrapper>
             </div>
