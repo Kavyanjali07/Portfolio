@@ -31,7 +31,7 @@ export default function Hero() {
                         >
                             <span className="w-8 h-[1px] bg-cyan-500/50" />
                             <TextType
-                                text={["Cybersecurity enthusiast"]}
+                                text={["Security-Focused Engineer"]}
                                 typingSpeed={65}
                                 pauseDuration={1200}
                                 showCursor
@@ -57,7 +57,7 @@ export default function Hero() {
                         <div className="relative space-y-8 bg-white/5 dark:bg-[#0f172a]/40 border border-white/10 md:backdrop-blur-2xl p-10 rounded-[2.5rem] shadow-2xl transition-all duration-500 hover:border-cyan-500/30">
                             <p className="text-gray-900 dark:text-white font-black text-2xl md:text-3xl leading-tight tracking-tight">
                                 <TextType
-                                    text={["Building systems that are", "secure by design."]}
+                                    text={["Secure by Design:", "Architecting Resilience"]}
                                     typingSpeed={75}
                                     pauseDuration={1500}
                                     showCursor
@@ -71,13 +71,13 @@ export default function Hero() {
                             </p>
                             
                             <p className="text-gray-700 dark:text-[#cbd5e1] leading-relaxed text-lg font-bold">
-                                My work lies at the intersection of development and cybersecurity, exploring how systems behave under real-world threats and designing solutions that can detect, prevent, and respond to them.
+                                Computer Science specialized in system security, network defense, and intelligent threat automation. I build code that survives the real world.
                             </p>
 
                         <div className="flex items-center gap-6 pt-4 border-t border-white/10">
                             <div className="w-1.5 h-12 bg-gradient-to-b from-cyan-500 to-purple-500 rounded-full" />
                             <p className="text-gray-500 dark:text-[#94a3b8] leading-relaxed text-lg italic font-bold">
-                                Focus: System security, Network defense, and Intelligent threat detection.
+                                I don&apos;t just build applications; I build fortresses. Explore projects that bridge development and offensive security.
                             </p>
                         </div>
                         </div>
@@ -106,11 +106,12 @@ export default function Hero() {
                             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 p-4 rounded-2xl bg-white/5 dark:bg-slate-900/40 border border-white/10 md:backdrop-blur-xl shadow-2xl group-hover:border-cyan-500/20 transition-all duration-500">
                                 {[
                                     { label: "About Me", icon: "👤", id: "about-me" },
+                                    { label: "Achievements", icon: "🌟", id: "achievements" },
+                                    { label: "Mindset", icon: "🛡️", id: "mindset" },
                                     { label: "Skills", icon: "⚡", id: "skills" },
                                     { label: "Projects", icon: "🚀", id: "projects" },
                                     { label: "Trainings", icon: "📚", id: "trainings" },
                                     { label: "Certificates", icon: "🏆", id: "certificates" },
-                                    { label: "Achievements", icon: "🌟", id: "achievements" },
                                     { label: "Education", icon: "🎓", id: "education" },
                                     { label: "Contact", icon: "✉️", id: "contact" },
                                 ].map((s, i) => (

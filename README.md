@@ -1,5 +1,5 @@
 # Kavyanjali Vashishtha
-**Cybersecurity & System Architecture Portfolio**
+**Security-Focused Engineering Portfolio**
 
 This repository contains the source code for my professional portfolio, built with Next.js, Framer Motion, and Tailwind CSS.
 
@@ -9,7 +9,7 @@ This repository contains the source code for my professional portfolio, built wi
 *   **Core:** Next.js 15, React 19, TypeScript
 *   **Styling & UI:** Tailwind CSS, Framer Motion, GSAP, Radix UI, Lucide React
 *   **Interactions:** OGL (WebGL effects), Smooth Scroll (Lenis)
-*   **Backend & Security:** Spring Boot, Python, nftables, JWT, RBAC
+*   **Backend & Security:** Spring Boot, Python, nftables, JWT
 
 ---
 

@@ -140,22 +140,22 @@ function AboutMeVisual() {
                 <div className="absolute -right-20 -top-20 w-64 h-64 bg-purple-500/10 rounded-full blur-[100px] group-hover:bg-cyan-500/20 transition-colors" />
 
                 <div className="relative z-10 space-y-6">
-                    <h4 className="text-cyan-400 font-black text-sm uppercase tracking-[0.4em] mb-2">Introduction</h4>
+                    <h4 className="text-cyan-400 font-black text-sm uppercase tracking-[0.4em] mb-2">Architecting Resilience</h4>
                     <p className="text-2xl md:text-3xl font-black text-white leading-tight tracking-tighter">
                         Hi, I am <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500">Kavyanjali Vashishtha.</span>
                     </p>
 
                     <div className="space-y-6 text-gray-300 font-medium text-base md:text-lg leading-relaxed">
                         <p>
-                            I am a Computer Science student with a deep-seated passion for architecting systems that are not just functional, but <span className="text-white font-bold italic">resilient by design</span>. My journey started with a simple question: "How does this break?" — which eventually led me into the world of cybersecurity.
+                            My journey in Computer Science isn&apos;t just about writing code—it&apos;s about understanding how systems fail, how they are exploited, and how to stay one step ahead of the adversary.
                         </p>
                         <p>
-                            Pursuing my B.Tech at Lovely Professional University, I specialize in bridging software development and low-level system security. Whether it's automating firewall rules or developing secure API gateways, I build tools that provide utility and peace of mind.
+                            Currently pursuing my B.Tech at Lovely Professional University, I have moved beyond generic full-stack development to focus on low-level system security and network defense. Whether I am automating firewall responses or auditing kernel-level calls, my focus remains constant: <span className="text-white font-bold italic">Shipping production code that is secure by default, not as an afterthought.</span>
                         </p>
                     </div>
 
                     <div className="flex flex-wrap gap-3 pt-4">
-                        {["Secure Architect", "Developer", "Cyber Enthusiast"].map(tag => (
+                        {["Security Architect", "System Hardener", "Network Defender"].map(tag => (
                             <span key={tag} className="px-4 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-black uppercase tracking-widest shadow-lg">
                                 {tag}
                             </span>
@@ -167,7 +167,7 @@ function AboutMeVisual() {
             <div className="flex-1 grid grid-cols-1 gap-6 w-full">
                 {[
                     { title: "Systems Thinking", icon: "🧠", desc: "Analyzing how components interact and identifying potential failure points." },
-                    { title: "Defensive Coding", icon: "🛡️", desc: "Implementing RBAC, encryption, and validation as core foundations." }
+                    { title: "Defensive Coding", icon: "🛡️", desc: "Implementing encryption and validation as core foundations." }
                 ].map((item, i) => (
                     <div key={i} className="p-8 rounded-[2.5rem] bg-slate-900/40 border border-white/20 md:backdrop-blur-2xl hover:bg-white/10 transition-all hover:scale-[1.02] shadow-xl group">
                         <div className="text-4xl mb-4 group-hover:rotate-12 transition-transform duration-500">{item.icon}</div>
@@ -187,13 +187,13 @@ function TrainingsVisual() {
             <div className="relative">
                 <div className="absolute -left-[42px] top-2 w-10 h-10 rounded-xl bg-[#0f172a] border-4 border-cyan-500 flex items-center justify-center text-xl shadow-[0_0_30px_rgba(34,211,238,0.4)]">🔍</div>
                 <div className="space-y-4">
-                    <span className="px-4 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-black text-[11px] uppercase tracking-[0.3em] border border-cyan-500/40">Immersive Training</span>
+                    <span className="px-4 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-black text-[11px] uppercase tracking-[0.3em] border border-cyan-500/40">Field Specialization</span>
                     <h4 className="text-4xl font-black text-white tracking-tighter uppercase italic">Cybersecurity Summer Training</h4>
                     <p className="text-cyan-400 font-black tracking-widest uppercase text-sm">Lovely Professional University | Jun’ 25 – Jul’ 25</p>
                     <div className="p-10 rounded-[3.5rem] bg-slate-900/40 border border-white/10 md:backdrop-blur-2xl mt-8 group hover:bg-white/10 transition-all duration-500 shadow-2xl relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-6 opacity-10 text-6xl group-hover:scale-125 transition-transform">🛰️</div>
                         <p className="text-gray-300 leading-relaxed font-medium md:text-lg relative z-10 italic">
-                            An intensive, hands-on program focusing on the complete lifecycle of cyber defense. I gained deep experience in network security auditing, real-time packet analysis, and ethical exploitation. Mastering tools like <span className="text-cyan-400">Metasploit</span>, <span className="text-cyan-400">Wireshark</span>, and <span className="text-cyan-400">Nmap</span>, I learned to identify and mitigate critical infrastructure vulnerabilities before they can be leveraged.
+                            Transitioned theoretical concepts into practical threat mitigation on live network topologies. Applied ethical exploitation techniques to identify infrastructure flaws and utilized <span className="text-cyan-400">Wireshark</span> for deep packet inspection to detect MITM attacks. Mastered the complete lifecycle of cyber defense, from identifying critical infrastructure vulnerabilities to implementing real-time mitigation patches using <span className="text-cyan-400">Metasploit</span> and <span className="text-cyan-400">Nmap</span>.
                         </p>
                     </div>
                 </div>
@@ -247,6 +247,43 @@ function CertificatesVisual() {
                         </div>
                     </motion.div>
                 ))}
+            </div>
+        </div>
+    );
+}
+
+function SecurityMindsetVisual() {
+    return (
+        <div className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="p-10 rounded-[3rem] bg-slate-900/40 border border-white/10 md:backdrop-blur-2xl hover:bg-white/10 transition-all shadow-2xl">
+                   <h5 className="text-cyan-400 font-black text-xl mb-4 uppercase tracking-widest">Offensive Defense</h5>
+                   <p className="text-gray-300 italic leading-relaxed">
+                       &quot;I approach development with an offensive mindset to build better defenses. My workflow integrates vulnerability research (VAPT) and network auditing as standard phases of the SDLC.&quot;
+                   </p>
+                </div>
+                <div className="p-10 rounded-[3rem] bg-slate-900/40 border border-white/10 md:backdrop-blur-2xl hover:bg-white/10 transition-all shadow-2xl">
+                   <h5 className="text-purple-400 font-black text-xl mb-4 uppercase tracking-widest">Zero-Trust Philosophy</h5>
+                   <p className="text-gray-300 italic leading-relaxed">
+                       Systems should be secure by default, not by configuration. I focus on implementing mTLS and stateless authentication to eliminate single points of failure.
+                   </p>
+                </div>
+            </div>
+            
+            <div className="space-y-8">
+               <h4 className="text-white font-black text-2xl uppercase tracking-tighter italic">Active Security Roadmap</h4>
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                   {[
+                       { title: "Zero-Trust API Gateway", desc: "Implementing mTLS and granular scope validation for microservices." },
+                       { title: "Automated Network Auditor", desc: "Nmap-based tool to audit infrastructure for CVE-2024+ misconfigurations." },
+                       { title: "Honey-Token System", desc: "Deploying fake credentials and alerting on unauthorized access attempts." }
+                   ].map((item, i) => (
+                       <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-colors">
+                           <h6 className="text-white font-bold mb-2">{item.title}</h6>
+                           <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                       </div>
+                   ))}
+               </div>
             </div>
         </div>
     );
@@ -327,9 +364,9 @@ function StandaloneSkills() {
     useEffect(() => { setMounted(true); }, []);
 
     const categories = [
-        { title: "Security & Defense", color: "cyan", skills: ["Network Security", "Vulnerability Assessment", "Exploitation Techniques", "Packet Analysis", "Firewall Automation"] },
-        { title: "Tools & Core Systems", color: "purple", skills: ["Linux (Kali/Ubuntu)", "Git", "GitHub", "Postman", "Bash Scripting", "Nmap", "Wireshark", "Metasploit", "nftables"] },
-        { title: "Programming & Backend", color: "emerald", skills: ["Python", "C++", "Java", "Spring Boot", "REST APIs", "SQL", "JWT Auth", "2FA Integration"] },
+        { title: "Security & Defense", color: "cyan", skills: ["Network Auditing", "Vulnerability Assessment (VAPT)", "Firewall Automation", "JWT/OAuth2", "Encryption", "Exploitation Techniques"] },
+        { title: "Development", color: "emerald", skills: ["Java (Spring Boot)", "Python", "C++", "REST APIs", "SQL", "Linux (Kali/Ubuntu)"] },
+        { title: "Tools", color: "purple", skills: ["Kali Linux", "Nmap", "Wireshark", "Metasploit", "Git", "GitHub", "Postman", "nftables", "Bash Scripting"] },
         { title: "Soft Skills", color: "pink", skills: ["Problem Solving", "Analytical Thinking", "Adaptability", "Attention To Details"] }
     ];
 
@@ -389,22 +426,22 @@ function StandaloneProjects() {
     const projects = [
         {
             title: "Dynamic Firewall Rule Generator",
-            desc: "A high-performance Python-based tool that automates network defense by generating real-time nftables rules based on live traffic analysis. It implements intelligent threat mitigation to reduce response times to unauthorized access attempts significantly.",
-            tech: ["Python", "nftables", "Security Auditing"],
+            desc: "Problem: Manual firewall configuration is too slow to neutralize automated, high-velocity network attacks. Solution: Engineered a Python automation engine that performs real-time traffic analysis to generate and inject nftables rules dynamically. Impact: Reduced threat response time from minutes to milliseconds.",
+            tech: ["Python", "nftables", "Security Modules"],
             color: "cyan",
             github: "https://github.com/Kavyanjali07/Dynamic-Firewall-Rule-Generator"
         },
         {
             title: "Secure System Call Interface",
-            desc: "An advanced security layer for Linux systems that intercepts and validates system calls using RBAC (Role-Based Access Control) and path-based filtering. Built with Python and C++, it prevents unauthorized execution of sensitive commands at the kernel level.",
+            desc: "Problem: Standard Linux interfaces often provide broad execution permissions, creating a massive attack surface. Solution: Built a security layer using C++ and Python to intercept, validate, and restrict system calls using path-filtering. Impact: Hardened system security at the kernel level.",
             tech: ["C++", "Python", "Linux Kernel"],
             color: "purple",
             github: "https://github.com/Kavyanjali07/User-Friendly-System-Call-Interface-for-Enhanced-Security"
         },
         {
-            title: "Smart Expense AI",
-            desc: "A sophisticated financial management backend developed with Spring Boot. It features robust JWT-based authentication, 2FA integration, and an AI-driven categorization engine to provide secure, real-time spending insights with high-level data privacy.",
-            tech: ["Spring Boot", "JWT", "AI Integration"],
+            title: "Smart Expense AI (Secure Backend)",
+            desc: "Problem: Financial applications require high-depth protection for sensitive PII. Solution: Developed a high-assurance Spring Boot backend implementing JWT-based stateless auth, 2FA, and encrypted data categorization. Impact: Built a production-ready engine where data privacy is foundational.",
+            tech: ["Spring Boot", "JWT", "Security"],
             color: "emerald",
             github: "https://github.com/Kavyanjali07/SmartExpenseAI"
         }
@@ -505,6 +542,14 @@ export default function JourneySections() {
                     <AboutMeVisual />
                 </SectionWrapper>
 
+                <SectionWrapper id="achievements" title="Achievements" icon="🌟" color="fuchsia" variantType="tiltFlip">
+                    <AchievementsStatic />
+                </SectionWrapper>
+
+                <SectionWrapper id="mindset" title="Security Mindset" icon="🛡️" color="cyan" variantType="haloExpand">
+                    <SecurityMindsetVisual />
+                </SectionWrapper>
+
                 <motion.section 
                     id="skills"
                     className="w-full max-w-7xl mx-auto py-32 px-8 relative"
@@ -535,9 +580,7 @@ export default function JourneySections() {
                     <CertificatesVisual />
                 </SectionWrapper>
 
-                <SectionWrapper id="achievements" title="Achievements" icon="🌟" color="fuchsia" variantType="tiltFlip">
-                    <AchievementsStatic />
-                </SectionWrapper>
+
 
                 <SectionWrapper id="education" title="Education" icon="🎓" color="indigo" variantType="unrollCascade">
                     <EducationVisual />
