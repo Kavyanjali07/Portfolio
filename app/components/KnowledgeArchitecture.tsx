@@ -3,23 +3,26 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-export default function KnowledgeArchitecture() {
+export interface System3DProps {
+  mode?: "hero" | "about" | "knowledgenetwork" | "security" | "contact";
+}
+
+export default function KnowledgeArchitecture({
+  mode = "hero",
+}: System3DProps) {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = mountRef.current;
     if (!container) return;
 
-    // 1. Accessibility: Check prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    // 2. Responsive Settings: Node density based on viewport
     const isMobile = window.innerWidth < 768;
-    const nodeCount = isMobile ? 18 : 42;
 
-    // 3. Three.js Scene, Camera, Renderer Setup
+    // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
 
     const width = container.clientWidth;
@@ -39,84 +42,123 @@ export default function KnowledgeArchitecture() {
 
     container.appendChild(renderer.domElement);
 
-    // 4. Color Palette - Editorial Design Tokens
+    // 2. Editorial Color Palette Tokens
     const COLOR_CHARCOAL = new THREE.Color("#2C2D1F");
     const COLOR_DEEP_OLIVE = new THREE.Color("#373F1D");
     const COLOR_OLIVE = new THREE.Color("#5C6E21");
     const COLOR_MUTED_GREEN = new THREE.Color("#00443B");
     const COLOR_WARM_SAND = new THREE.Color("#E3E1D4");
 
-    // 5. Lighting Setup (Soft Warm Editorial Lighting)
-    const ambientLight = new THREE.AmbientLight(0xf5eee9, 1.2);
+    // 3. Lighting Setup
+    const ambientLight = new THREE.AmbientLight(0xf5eee9, 1.3);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    dirLight.position.set(12, 18, 15);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.6);
+    dirLight.position.set(14, 20, 15);
     dirLight.castShadow = true;
     dirLight.shadow.mapSize.width = 1024;
     dirLight.shadow.mapSize.height = 1024;
-    dirLight.shadow.bias = -0.0005;
     scene.add(dirLight);
 
-    const fillLight = new THREE.DirectionalLight(0x5c6e21, 0.6);
-    fillLight.position.set(-10, -10, -10);
+    const fillLight = new THREE.DirectionalLight(0x5c6e21, 0.7);
+    fillLight.position.set(-12, -8, -10);
     scene.add(fillLight);
 
-    // 6. Main Architectural Group (Contains Sculpture Components)
+    // 4. Main Group
     const mainGroup = new THREE.Group();
     scene.add(mainGroup);
 
-    // 7. Architectural Bounding Box & Wireframe Plane Frames (ArchitectureFrame)
-    const frameBoxGeo = new THREE.BoxGeometry(6.5, 6.5, 6.5);
+    // 5. Central Core Chamber (THE SYSTEM CORE)
+    const coreGeo = new THREE.DodecahedronGeometry(1.4, 0);
+    const coreMat = new THREE.MeshStandardMaterial({
+      color: mode === "security" ? COLOR_MUTED_GREEN : COLOR_DEEP_OLIVE,
+      roughness: 0.3,
+      metalness: 0.4,
+      wireframe: false,
+    });
+    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+    coreMesh.castShadow = true;
+    coreMesh.receiveShadow = true;
+    mainGroup.add(coreMesh);
+
+    // Core Wireframe Frame Overlay
+    const coreWireGeo = new THREE.WireframeGeometry(
+      new THREE.IcosahedronGeometry(2.1, 0)
+    );
+    const coreWireMat = new THREE.LineBasicMaterial({
+      color: COLOR_OLIVE,
+      transparent: true,
+      opacity: 0.6,
+    });
+    const coreWireMesh = new THREE.LineSegments(coreWireGeo, coreWireMat);
+    mainGroup.add(coreWireMesh);
+
+    // 6. Outer Architectural Frame & Boundary Planes
+    const frameBoxGeo = new THREE.BoxGeometry(6.8, 6.8, 6.8);
     const frameBoxWire = new THREE.WireframeGeometry(frameBoxGeo);
     const frameMat = new THREE.LineBasicMaterial({
-      color: COLOR_DEEP_OLIVE,
+      color: mode === "security" ? COLOR_MUTED_GREEN : COLOR_CHARCOAL,
       transparent: true,
-      opacity: 0.35,
+      opacity: mode === "security" ? 0.6 : 0.3,
     });
     const frameMesh = new THREE.LineSegments(frameBoxWire, frameMat);
     mainGroup.add(frameMesh);
 
-    // Secondary Nested Octahedral Structural Frame
-    const octaGeo = new THREE.OctahedronGeometry(4.2, 0);
-    const octaWire = new THREE.WireframeGeometry(octaGeo);
-    const octaMat = new THREE.LineBasicMaterial({
-      color: COLOR_CHARCOAL,
-      transparent: true,
-      opacity: 0.25,
-    });
-    const octaMesh = new THREE.LineSegments(octaWire, octaMat);
-    mainGroup.add(octaMesh);
-
-    // 8. Generating Architectural Nodes & Positions (NetworkNode)
-    const nodePositions: THREE.Vector3[] = [];
-    const nodeGeos: THREE.BufferGeometry[] = [
-      new THREE.SphereGeometry(0.18, 16, 16),
-      new THREE.OctahedronGeometry(0.22, 0),
-      new THREE.IcosahedronGeometry(0.16, 0),
-    ];
-
-    const nodeMaterials = [
-      new THREE.MeshStandardMaterial({
+    // Security Boundary Plane (if in security mode)
+    if (mode === "security") {
+      const shieldPlaneGeo = new THREE.BoxGeometry(4.5, 4.5, 4.5);
+      const shieldWire = new THREE.WireframeGeometry(shieldPlaneGeo);
+      const shieldMat = new THREE.LineBasicMaterial({
         color: COLOR_OLIVE,
-        roughness: 0.3,
-        metalness: 0.2,
-      }),
-      new THREE.MeshStandardMaterial({
-        color: COLOR_DEEP_OLIVE,
-        roughness: 0.4,
-        metalness: 0.1,
-      }),
-      new THREE.MeshStandardMaterial({
-        color: COLOR_MUTED_GREEN,
-        roughness: 0.5,
-        metalness: 0.3,
-      }),
-    ];
+        transparent: true,
+        opacity: 0.75,
+      });
+      const shieldMesh = new THREE.LineSegments(shieldWire, shieldMat);
+      mainGroup.add(shieldMesh);
+    }
 
-    // Seeded architectural spatial distribution
-    for (let i = 0; i < nodeCount; i++) {
-      const radius = 1.5 + Math.random() * 3.2;
+    // 7. Topology Nodes Generation (Primary vs Secondary Nodes)
+    const nodePositions: THREE.Vector3[] = [];
+    const primaryNodeCount = isMobile ? 8 : mode === "knowledgenetwork" ? 28 : 16;
+    const secondaryNodeCount = isMobile ? 10 : mode === "knowledgenetwork" ? 30 : 20;
+
+    const primaryGeo = new THREE.SphereGeometry(0.22, 16, 16);
+    const secondaryGeo = new THREE.SphereGeometry(0.12, 12, 12);
+
+    const primaryMat = new THREE.MeshStandardMaterial({
+      color: COLOR_OLIVE,
+      roughness: 0.3,
+      metalness: 0.3,
+    });
+
+    const secondaryMat = new THREE.MeshStandardMaterial({
+      color: COLOR_DEEP_OLIVE,
+      roughness: 0.5,
+      metalness: 0.1,
+    });
+
+    // Primary Nodes (Structured Anchor Points)
+    for (let i = 0; i < primaryNodeCount; i++) {
+      const angle = (i / primaryNodeCount) * Math.PI * 2;
+      const radius = 2.8 + (i % 3) * 0.7;
+      const heightOffset = (i % 2 === 0 ? 1 : -1) * (1.2 + (i % 4) * 0.4);
+
+      const x = Math.cos(angle) * radius;
+      const y = heightOffset;
+      const z = Math.sin(angle) * radius;
+
+      const pos = new THREE.Vector3(x, y, z);
+      nodePositions.push(pos);
+
+      const nodeMesh = new THREE.Mesh(primaryGeo, primaryMat);
+      nodeMesh.position.copy(pos);
+      nodeMesh.castShadow = true;
+      mainGroup.add(nodeMesh);
+    }
+
+    // Secondary Nodes (Outer Field Connections)
+    for (let i = 0; i < secondaryNodeCount; i++) {
+      const radius = 3.5 + Math.random() * 2.2;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
 
@@ -127,24 +169,31 @@ export default function KnowledgeArchitecture() {
       const pos = new THREE.Vector3(x, y, z);
       nodePositions.push(pos);
 
-      // Create Node Mesh
-      const geo = nodeGeos[i % nodeGeos.length];
-      const mat = nodeMaterials[i % nodeMaterials.length];
-      const nodeMesh = new THREE.Mesh(geo, mat);
+      const nodeMesh = new THREE.Mesh(secondaryGeo, secondaryMat);
       nodeMesh.position.copy(pos);
-      nodeMesh.castShadow = true;
-      nodeMesh.receiveShadow = true;
       mainGroup.add(nodeMesh);
     }
 
-    // 9. Generating Structural Interconnecting Lines (NetworkEdge)
+    // 8. Connecting Structural Beams / Paths
     const edgePositions: number[] = [];
-    const maxEdgeDistance = isMobile ? 3.0 : 2.8;
+    const maxDist = isMobile ? 3.2 : mode === "knowledgenetwork" ? 3.8 : 3.2;
 
     for (let i = 0; i < nodePositions.length; i++) {
+      // Connect to Core
+      if (i < primaryNodeCount) {
+        edgePositions.push(
+          0,
+          0,
+          0,
+          nodePositions[i].x,
+          nodePositions[i].y,
+          nodePositions[i].z
+        );
+      }
+
       for (let j = i + 1; j < nodePositions.length; j++) {
         const dist = nodePositions[i].distanceTo(nodePositions[j]);
-        if (dist < maxEdgeDistance) {
+        if (dist < maxDist) {
           edgePositions.push(
             nodePositions[i].x,
             nodePositions[i].y,
@@ -166,17 +215,17 @@ export default function KnowledgeArchitecture() {
     const edgeMat = new THREE.LineBasicMaterial({
       color: COLOR_CHARCOAL,
       transparent: true,
-      opacity: 0.4,
+      opacity: 0.35,
     });
 
     const edgeLines = new THREE.LineSegments(edgeGeo, edgeMat);
     mainGroup.add(edgeLines);
 
-    // Accent Sand Lines (Highlights key structural pathways)
-    const accentEdgePositions: number[] = [];
-    for (let i = 0; i < nodePositions.length; i += 3) {
-      const nextIdx = (i + 2) % nodePositions.length;
-      accentEdgePositions.push(
+    // Warm Sand Highlight Pathways
+    const sandPositions: number[] = [];
+    for (let i = 0; i < primaryNodeCount; i++) {
+      const nextIdx = (i + 1) % primaryNodeCount;
+      sandPositions.push(
         nodePositions[i].x,
         nodePositions[i].y,
         nodePositions[i].z,
@@ -186,23 +235,20 @@ export default function KnowledgeArchitecture() {
       );
     }
 
-    const accentEdgeGeo = new THREE.BufferGeometry();
-    accentEdgeGeo.setAttribute(
+    const sandGeo = new THREE.BufferGeometry();
+    sandGeo.setAttribute(
       "position",
-      new THREE.Float32BufferAttribute(accentEdgePositions, 3)
+      new THREE.Float32BufferAttribute(sandPositions, 3)
     );
-    const accentEdgeMat = new THREE.LineBasicMaterial({
+    const sandMat = new THREE.LineBasicMaterial({
       color: COLOR_WARM_SAND,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.65,
     });
-    const accentEdgeLines = new THREE.LineSegments(
-      accentEdgeGeo,
-      accentEdgeMat
-    );
-    mainGroup.add(accentEdgeLines);
+    const sandLines = new THREE.LineSegments(sandGeo, sandMat);
+    mainGroup.add(sandLines);
 
-    // 10. Interaction & Motion Physics Damping
+    // 9. Interaction & Motion Physics
     let mouseX = 0;
     let mouseY = 0;
     let targetRotX = 0;
@@ -217,7 +263,6 @@ export default function KnowledgeArchitecture() {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Window Resize Handler
     const handleResize = () => {
       if (!container) return;
       const w = container.clientWidth;
@@ -229,7 +274,7 @@ export default function KnowledgeArchitecture() {
 
     window.addEventListener("resize", handleResize);
 
-    // 11. Render Loop
+    // 10. Render Loop
     let animId: number;
     let clock = new THREE.Clock();
 
@@ -238,17 +283,18 @@ export default function KnowledgeArchitecture() {
       const elapsedTime = clock.getElapsedTime();
 
       if (!prefersReducedMotion) {
-        // Continuous subtle rotation & floating motion
-        mainGroup.rotation.y = elapsedTime * 0.08;
-        mainGroup.rotation.x = Math.sin(elapsedTime * 0.05) * 0.15;
-        mainGroup.position.y = Math.sin(elapsedTime * 0.7) * 0.2;
+        // Continuous slow rotation & floating
+        mainGroup.rotation.y = elapsedTime * 0.07;
+        mainGroup.rotation.x = Math.sin(elapsedTime * 0.04) * 0.12;
+        mainGroup.position.y = Math.sin(elapsedTime * 0.6) * 0.18;
 
-        // Nested frame relative counter-rotation
-        octaMesh.rotation.y = -elapsedTime * 0.12;
+        // Core counter-rotation
+        coreMesh.rotation.y = -elapsedTime * 0.15;
+        coreWireMesh.rotation.y = elapsedTime * 0.1;
 
-        // Smooth mouse parallax interpolation
-        targetRotY += (mouseX * 0.4 - targetRotY) * 0.04;
-        targetRotX += (mouseY * 0.4 - targetRotX) * 0.04;
+        // Smooth mouse damping
+        targetRotY += (mouseX * 0.35 - targetRotY) * 0.04;
+        targetRotX += (mouseY * 0.35 - targetRotX) * 0.04;
 
         mainGroup.rotation.y += targetRotY;
         mainGroup.rotation.x += targetRotX;
@@ -259,39 +305,43 @@ export default function KnowledgeArchitecture() {
 
     renderLoop();
 
-    // 12. Cleanup on Unmount
+    // 11. Cleanup
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
 
+      coreGeo.dispose();
+      coreMat.dispose();
+      coreWireGeo.dispose();
+      coreWireMat.dispose();
+
       frameBoxGeo.dispose();
       frameBoxWire.dispose();
       frameMat.dispose();
-      octaGeo.dispose();
-      octaWire.dispose();
-      octaMat.dispose();
 
-      nodeGeos.forEach((g) => g.dispose());
-      nodeMaterials.forEach((m) => m.dispose());
+      primaryGeo.dispose();
+      primaryMat.dispose();
+      secondaryGeo.dispose();
+      secondaryMat.dispose();
 
       edgeGeo.dispose();
       edgeMat.dispose();
-      accentEdgeGeo.dispose();
-      accentEdgeMat.dispose();
+      sandGeo.dispose();
+      sandMat.dispose();
 
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
       renderer.dispose();
     };
-  }, []);
+  }, [mode]);
 
   return (
     <div
       ref={mountRef}
-      className="w-full h-full min-h-[360px] md:min-h-[500px] relative pointer-events-none select-none"
-      aria-label="Interactive 3D Architectural Knowledge Sculpture"
+      className="w-full h-full min-h-[350px] md:min-h-[480px] relative pointer-events-none select-none"
+      aria-label="The System — Architectural 3D Sculpture"
     />
   );
 }

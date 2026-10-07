@@ -15,22 +15,27 @@ export default function EditorialHero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-between pt-28 md:pt-36 pb-12 px-6 md:px-16 lg:px-24 overflow-hidden border-b border-[#E3E1D4]">
+    <section className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-between pt-28 md:pt-36 pb-12 px-6 md:px-16 lg:px-24 overflow-hidden border-b border-[#E3E1D4] bg-[#F5EEE9]">
+      {/* Field Journal Marginalia Tag */}
+      <div className="absolute top-24 left-6 md:left-16 text-[10px] font-sans uppercase tracking-[0.3em] font-semibold text-[#5C6E21] opacity-75 hidden sm:block">
+        [ FIELD JOURNAL NO. 01 / SYSTEM RESILIENCE & ARCHITECTURE ]
+      </div>
+
       {/* Editorial Grid Composition */}
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center my-auto">
         
-        {/* Left Column: Editorial Statement & Typography (Col 1-7) */}
+        {/* Left Column: Editorial Statement & Narrative (Col 1-7) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="lg:col-span-7 flex flex-col items-start gap-6 relative z-10"
         >
-          {/* Sub-Tagline */}
+          {/* Sub-Tagline / Journal Note */}
           <div className="flex items-center gap-3">
             <span className="w-8 h-[1px] bg-[#5C6E21]" />
-            <span className="text-xs uppercase font-sans tracking-[0.3em] font-semibold text-[#5C6E21]">
-              Software Engineering × Cybersecurity
+            <span className="text-xs uppercase font-sans tracking-[0.3em] font-bold text-[#5C6E21]">
+              AN ENGINEER&apos;S FIELD JOURNAL
             </span>
           </div>
 
@@ -43,9 +48,9 @@ export default function EditorialHero() {
             </span>
           </h1>
 
-          {/* Concise Description */}
-          <p className="max-w-xl text-base sm:text-lg font-sans text-[#2C2D1F]/80 leading-relaxed font-normal mt-2">
-            Computer science engineer focused on building secure, reliable systems and understanding the ways they fail.
+          {/* Field Journal Opening Reflection */}
+          <p className="max-w-xl text-base sm:text-lg font-sans text-[#2C2D1F]/85 leading-relaxed font-normal mt-2">
+            Computer science engineer exploring backend architecture, secure protocols, and system resilience. An open log of concepts, implementations, and failure modes.
           </p>
 
           {/* Action CTAs */}
@@ -54,7 +59,7 @@ export default function EditorialHero() {
               onClick={scrollToWork}
               className="group px-8 py-3.5 bg-[#2C2D1F] text-[#F5EEE9] text-xs uppercase font-sans tracking-[0.2em] font-semibold hover:bg-[#5C6E21] transition-all duration-300 flex items-center gap-3 cursor-pointer"
             >
-              <span>EXPLORE WORK</span>
+              <span>EXPLORE FIELD LOGS</span>
               <span className="group-hover:translate-x-1 transition-transform duration-300">
                 →
               </span>
@@ -72,16 +77,16 @@ export default function EditorialHero() {
           </div>
         </motion.div>
 
-        {/* Right Column: Visual Composition with Circular Portrait + Real 3D WebGL Hero3D (Col 8-12) */}
+        {/* Right Column: Circular Portrait + "The System" 3D Object (Col 8-12) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
           className="lg:col-span-5 relative flex items-center justify-center min-h-[380px] lg:min-h-[480px]"
         >
-          {/* REAL 3D WebGL Architectural Knowledge Network Sculpture */}
+          {/* "THE SYSTEM" 3D WebGL Architectural Sculpture Layer */}
           <div className="absolute inset-0 z-0 flex items-center justify-center opacity-90 scale-105">
-            <Hero3D />
+            <Hero3D mode="hero" />
           </div>
 
           {/* Circular Portrait Image */}

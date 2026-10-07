@@ -1,11 +1,11 @@
 "use client";
 
-import KnowledgeArchitecture from "./KnowledgeArchitecture";
+import KnowledgeArchitecture, { System3DProps } from "./KnowledgeArchitecture";
 
-export default function Hero3D() {
+export default function Hero3D({ mode = "hero" }: System3DProps) {
   return (
     <div className="w-full h-full relative flex items-center justify-center pointer-events-none">
-      <KnowledgeArchitecture />
+      <KnowledgeArchitecture mode={mode} />
     </div>
   );
 }
