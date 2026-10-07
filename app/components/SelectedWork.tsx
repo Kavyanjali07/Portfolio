@@ -112,6 +112,19 @@ export default function SelectedWork() {
                   </p>
                 </div>
               </div>
+
+              {/* GitHub Repository Link */}
+              <div className="pt-4 border-t border-[#E3E1D4] flex items-center justify-between">
+                <a
+                  href="https://github.com/Kavyanjali07/KnowledgeNetwork.git"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 text-xs uppercase font-sans tracking-[0.2em] font-semibold text-[#2C2D1F] hover:text-[#5C6E21] transition-colors"
+                >
+                  <span>VIEW REPOSITORY ON GITHUB</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
             </div>
 
             {/* Right Abstract Knowledge Graph Diagram */}

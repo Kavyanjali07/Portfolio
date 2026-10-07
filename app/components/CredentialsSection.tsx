@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 export default function CredentialsSection() {
   const credentials = [
     {
+      title: "Deloitte Australia — Cyber Job Simulation",
+      issuer: "Forage",
+      date: "May 2025",
+      id: "h4mfBiWcEsqc6LcB6",
+      link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_sZbzeDaJJhwnQPZ3L_1748684074744_completion_certificate.pdf",
+    },
+    {
       title: "Java Certification",
       issuer: "HackerRank",
       date: "February 2026",
@@ -69,13 +76,31 @@ export default function CredentialsSection() {
               transition={{ duration: 0.4, delay: idx * 0.08 }}
               className="group border-b border-[#E3E1D4] pb-6 flex flex-col md:flex-row md:items-baseline justify-between gap-4 transition-colors"
             >
-              <div className="space-y-1">
-                <span className="text-[10px] font-sans uppercase tracking-[0.25em] font-bold text-[#5C6E21]">
-                  {cred.issuer}
-                </span>
-                <h3 className="font-editorial text-2xl sm:text-3xl font-normal text-[#2C2D1F] group-hover:text-[#5C6E21] group-hover:italic transition-all duration-300">
-                  {cred.title}
-                </h3>
+              <div className="space-y-1 max-w-2xl">
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] font-sans uppercase tracking-[0.25em] font-bold text-[#5C6E21]">
+                    {cred.issuer}
+                  </span>
+                  {cred.id && (
+                    <span className="text-[10px] font-sans uppercase tracking-widest text-[#373F1D]/60">
+                      ID: {cred.id}
+                    </span>
+                  )}
+                </div>
+                {cred.link ? (
+                  <a
+                    href={cred.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block font-editorial text-2xl sm:text-3xl font-normal text-[#2C2D1F] group-hover:text-[#5C6E21] group-hover:italic transition-all duration-300"
+                  >
+                    {cred.title} ↗
+                  </a>
+                ) : (
+                  <h3 className="font-editorial text-2xl sm:text-3xl font-normal text-[#2C2D1F] group-hover:text-[#5C6E21] group-hover:italic transition-all duration-300">
+                    {cred.title}
+                  </h3>
+                )}
               </div>
 
               <div className="flex items-center gap-6">

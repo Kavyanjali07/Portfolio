@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import NetworkSculpture from "./NetworkSculpture";
+import Hero3D from "./Hero3D";
 
 export default function EditorialHero() {
   const scrollToWork = () => {
@@ -72,16 +72,16 @@ export default function EditorialHero() {
           </div>
         </motion.div>
 
-        {/* Right Column: Visual Composition with Circular Portrait + 3D Sculpture (Col 8-12) */}
+        {/* Right Column: Visual Composition with Circular Portrait + Real 3D WebGL Hero3D (Col 8-12) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          className="lg:col-span-5 relative flex items-center justify-center min-h-[380px] lg:min-h-[460px]"
+          className="lg:col-span-5 relative flex items-center justify-center min-h-[380px] lg:min-h-[480px]"
         >
-          {/* 3D Network Sculpture Layer */}
-          <div className="absolute inset-0 z-0 flex items-center justify-center opacity-85">
-            <NetworkSculpture />
+          {/* REAL 3D WebGL Architectural Knowledge Network Sculpture */}
+          <div className="absolute inset-0 z-0 flex items-center justify-center opacity-90 scale-105">
+            <Hero3D />
           </div>
 
           {/* Circular Portrait Image */}
